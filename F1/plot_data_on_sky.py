@@ -71,7 +71,7 @@ def segments_on_map(fitsfile, ra, dec, Ps, pas, scale = 1000):
 
 if __name__ == '__main__':
     # Load in the coordinates of the stars
-    path = '../IGRJ06074+2205.txt'
+    path = 'IGRJ06074+2205.txt'
     eikona_fits = 'dss.06.07.26.60+22.05.48.0.fits'
     ras_all, decs_all, Ps, angles = coordinates_os_stars (path)  
     #q, u, sq, su, polosis = stokes_parameters_csv(path)
