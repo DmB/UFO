@@ -14,7 +14,6 @@ plt.rc('font', family='serif')
 mpl.rcParams['ps.fonttype'] = 42
 
 c = 2.99792458E+18
-Rlambda = 19.9861e7 # Angstroms = 15 GHz
 
 WLs = []
 Frs = []
@@ -38,18 +37,7 @@ for line in fop.readlines():
 fop.close()
 
 
-#slope, intercept, r_value, p_value, std_err = st.linregress(np.log10(WLs),np.log10(Fs))
-#print slope * Rlambda + intercept
 
-#X = np.arange(1542,Rlambda,250)
-#X2 = []
-#Y = []
-#for x in X:
-    #y = slope * x + intercept
-    #if y > 0:
-        #X2.append(x)
-        #Y.append(y)
-##Y = map(lambda x: slope * x + intercept, X)
 x = []
 y = []
 for i in range(len(WLs)):
@@ -91,30 +79,3 @@ plt.clf()
 plt.cla()
 plt.close()
 
-
-######################### LUMINOSITY ##################
-
-figure = plt.figure(figsize=(2.53, 2.56), dpi=150)
-figure.subplots_adjust(hspace=0.1)
-fig = plt.subplot(111)
-#plt.xlabel(r'$\mathrm{\lambda$ $\mathrm{(A)}$')
-plt.xlabel(r'$\mathrm{\nu}$ $\mathrm{(Hz)}$')
-plt.ylabel(r'$\mathrm{\nu L_{\nu} (erg/s)}$',fontsize=14) #,position=(-0.07,0.5)
-#fig.get_yaxis().set_label_coords(-0.07,0.5)
-nuL = []
-for i in range(len(nuFs)):
-    nuL.append(4*np.pi*(3.08568e24 * 7204.3)**2 * nuFs[i])  # correct distance for z=1.06
-plt.errorbar(Frs,nuL,yerr=nuFerrs,markersize=1,capthick=0,fmt='o',color='k')
-fig.get_axes().yaxis.tick_right()
-fig.get_axes().yaxis.set_label_position("right")
-plt.xlim([1e8,1e26])
-plt.ylim([10**42.59,10**48.17])
-fig.set_yscale('log')
-fig.set_xscale('log')
-#plt.xticks([100,200,300], ['100','200','300'])
-#plt.yticks([1,10,20,30], ['1','10','20','30'])
-
-plt.savefig('SED_lum.png',bbox_inches='tight')
-plt.clf()
-plt.cla()
-plt.close()
