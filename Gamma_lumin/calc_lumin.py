@@ -13,7 +13,8 @@ ev2erg = 1.602176565e-12 # ergs in ev
 flux     = 3.32160e-10 #photon/cm^2/MeV/s 1-100GeV from 3FGL
 flux_err = 7.72456e-11 #photon/cm^2/MeV/s from 3FGL
 Gamma    = 1.93567 #photon ind from 3FGL
-z = 0.062 # our data
+z = 0.06169 # our data
+z_err = 4e-05 
 
 def calcLumin():
     """
@@ -31,7 +32,8 @@ def calcLumin():
 
     cosmo = FlatLambdaCDM(H0=67.8, Om0=0.308) # Planck Collab 2015, Paper XIII
     Lumin = 4 * np.pi * (cosmo.luminosity_distance(z).cgs.value)**2 * (1.0 + z)**(Gamma-2.0) * E
-    L_err = 4 * np.pi * (cosmo.luminosity_distance(z).cgs.value)**2 * (1.0 + z)**(Gamma-2.0) * E_err
+    #L_err = 4 * np.pi * (cosmo.luminosity_distance(z).cgs.value)**2 * (1.0 + z)**(Gamma-2.0) * E_err
+    L_err = ((4 * np.pi * (cosmo.luminosity_distance(z).cgs.value)**2 * (1.0 + z)**(Gamma-2.0) * E_err)**2 + (8 * np.pi * (cosmo.luminosity_distance(z).cgs.value) * (1.0 + z)**(Gamma-2.0) * E* (cosmo.luminosity_distance(z_err).cgs.value))**2 + (4 * np.pi * (cosmo.luminosity_distance(z).cgs.value)**2 * (Gamma-2.0) * (1.0 + z)**(Gamma-3.0) * E * z_err)**2)**0.5
     return Lumin, L_err
 
 if __name__ == "__main__":
