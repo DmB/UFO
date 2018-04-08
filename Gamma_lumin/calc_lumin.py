@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+'''
+calculates gamma-ray luminosities from photon fluxes and photon indexes
+according to http://arxiv.org/pdf/1403.4961.pdf
+'''
+
 import matplotlib.pyplot as plt
 from astropy.cosmology import FlatLambdaCDM
 import numpy as np
