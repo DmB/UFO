@@ -1,4 +1,5 @@
 # name             lambda[A]    F[erg/cm2/s/A]     Ferr         fit
+#  F is calculated for z=0.062
 Fermi10_100GeV   2.254259e-7     2.007e-06       0.000e+00       n
 Fermi3_10GeV     0.000001907     4.213e-07       0.000e+00       n
 Fermi1_3GeV      0.000006199     9.726e-08       0.000e+00       n
