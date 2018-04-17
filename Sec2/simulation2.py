@@ -16,7 +16,9 @@ variant 2
 import random
 import numpy as np
 
-Nsim = 1000 # number of trials in MC
+Nsim  = 10000 # number of trials in MC
+N_UFO = 1010 # number of UFOs in 3FGL
+N_BL  = int(round(0.5659 * N_UFO)) # expected number of blazars among UFOs taking into account that there are 1717 identified blazars in 3FGL
 
 def ReadExt():
     Pmax = []
@@ -67,14 +69,13 @@ def GetRandBlazars(N,Pblaz):
 if __name__ == "__main__":
     Pmax = ReadExt()
     Pblaz = ReadBlazarCat()
-    
     all_detections = []
     for i in range(Nsim):
-        Ps = GetRandBlazars(len(Pmax),Pblaz)
-        detections = [ps >= pmax for pmax, ps in zip(Pmax,Ps)].count(True)
+        Ps = GetRandBlazars(N_BL,Pblaz)
+        detections = [ps >= pmax for pmax, ps in zip(random.sample(Pmax,N_BL),Ps)].count(True)
         all_detections.append(detections)
 
-    print "Mean number of detection is:", np.mean(all_detections)," out of ",str(len(Pmax))
+    print "Mean number of detection is:", np.mean(all_detections)," out of ",str(N_BL), " expected blazars"
     print "std of detection is:", np.std(all_detections)
 
 
