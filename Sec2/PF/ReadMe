@@ -1,0 +1,103 @@
+J/MNRAS/452/715    Optical polarization of the Polaris Flare (Panopoulou+, 2015)
+================================================================================
+Optical polarization map of the Polaris Flare with RoboPol.
+    Panopoulou G.V., Tassis K., Blinov D., Pavlidou V., King O.G.,
+    Paleologou E., Ramaprakash A., Angelakis E., Balokovic M., Das H.K.,
+    Feiler R., Hovatta T., Khodade P., Kiehlmann S., Kus A., Kylafis N.,
+    Liodakis I., Modi D., Myserlis I., Papadakis I., Papamastorakis I.,
+    Pazderska B., Pazderski E., Pearson T.J., Rajarshi C., Readhead A.C.S.,
+    Reig P., Zensus J.A.
+   <Mon. Not. R. Astron. Soc. 452, 715 (2015)>
+   =2015MNRAS.452..715P
+================================================================================
+ADC_Keywords: Polarization ; Interstellar medium
+Keywords: magnetic fields - polarization - stars: formation - ISM: clouds -
+          ISM: individual objects: Polaris Flare
+
+Abstract:
+    The stages before the formation of stars in molecular clouds are
+    poorly understood. Insights can be gained by studying the properties
+    of quiescent clouds, such as their magnetic field structure. The
+    plane-of-the-sky orientation of the field can be traced by polarized
+    starlight. We present the first extended, wide-field (~10deg^2^) map of
+    the Polaris Flare cloud in dust-absorption induced optical
+    polarization of background stars, using the Robotic Polarimeter
+    (RoboPol) polarimeter at the Skinakas Observatory. This is the first
+    application of the wide-field imaging capabilities of RoboPol. The
+    data were taken in the R band and analysed with the automated
+    reduction pipeline of the instrument. We present in detail
+    optimizations in the reduction pipeline specific to wide-field
+    observations. Our analysis resulted in reliable measurements of 641
+    stars with median fractional linear polarization 1.3%. The
+    projected magnetic field shows a large-scale ordered pattern. At high
+    longitudes it appears to align with faint striations seen in the
+    Herschel-Spectral and Photometric Imaging Receiver (SPIRE) map of dust
+    emission (250um), while in the central 4.5 deg2 it shows an eddy-like
+    feature. The overall polarization pattern we obtain is in good
+    agreement with large-scale measurements by Planck of the dust emission
+    polarization in the same area of the sky.
+
+Description:
+    The RoboPol Optical Polarization data of the Polaris Flare were
+    obtained with the RoboPol polarimeter at the 1.3m telescope at the
+    Skinakas Observatory in Crete, Greece. Observations cover the area
+    l=[122.6deg, 126.0deg], b=[+24.7deg, +27.9deg] (almost 10 square
+    degrees). All observations were in the R band. Measurements presented
+    in the accompanying table have fractional linear polarization (p) to
+    error ({sigma}_p) greater or equal to 2.5. Coordinates are those of
+    the corresponding source in the USNO-B1.0 star catalog.
+
+Objects:
+    ----------------------------------------------------------
+       RA   (2000)   DE     Designation(s)
+    ----------------------------------------------------------
+    11 00 14.8   +86 10 52  Polaris Flare = NAME Polaris flare
+    ----------------------------------------------------------
+
+File Summary:
+--------------------------------------------------------------------------------
+ FileName   Lrecl  Records   Explanations
+--------------------------------------------------------------------------------
+ReadMe         80        .   This file
+table2.dat     72      609   Optical polarization data of the Polaris Flare
+                              (corrected version 20-Jun-2016)
+--------------------------------------------------------------------------------
+
+Byte-by-byte Description of file: table2.dat
+--------------------------------------------------------------------------------
+   Bytes Format Units   Label    Explanations
+--------------------------------------------------------------------------------
+   1-  9  F9.5  deg     RAdeg    Right Ascension (J2000) (1)
+  13- 20  F8.5  deg     DEdeg    Declination (J2000) (1)
+  24- 32  F9.5  deg     GLON     Galactic longitude (1)
+  36- 43  F8.5  deg     GLAT     Galactic latitude (1)
+  47- 49  F3.1  %       Pol      [0.5/4.5] Polarization degree percentage (2)
+  53- 55  F3.1  %     e_Pol      [0.2/1.9] Error in polarization degree
+  59- 61  I3    deg     EVPA     [-90/90] Electric vector polarization angle (3)
+  65- 66  I2    deg   e_EVPA     [2/19] Error in EVPA
+  70- 72  I3    deg     galPA    [0/180] Galactic polarization angle (4)
+--------------------------------------------------------------------------------
+Note (1): Coordinates correspond to those in the USNO-B1.0 catalog
+  Monet et al. (2003AJ....125..984M, Cat. I/284).
+Note (2): The polarization degree is dimensionless because it is defined as
+  the polarized intensity divided by the total intensity. The values of this
+  column are percentages. These values have been debiased following equation
+   1 of the paper.
+Note (3): The Electric Vector Polarization Angle (EVPA) is measured in the
+  celestial coordinate system starting from the North direction and increasing
+  towards the East and is given in the range [-90,90], as specified by the IAU.
+Note (4): The Polarization Angle measured in the Galactic coordinate system
+  using the same convention for the EVPA. These values were transformed from
+  EVPA as in Stephens et al., 2011ApJ...728...99S.
+  They are in the range [0,180].
+--------------------------------------------------------------------------------
+
+Acknowledgements:
+    Georgia Virginia Panopoulou, panopg(at)physics.uoc.gr
+
+History:
+    * 13-Jul-2015: First on-line version
+    * 20-Jun-2016: Corrected table2 (from author)
+
+================================================================================
+(End)    Georgia Panopoulou [Univ. Crete], Patricia Vannier [CDS]    11-Jul-2015
