@@ -13,6 +13,7 @@ import matplotlib as mpl
 import math, random
 import distr
 
+Nsim = 800
 N_field_stars = 40
 
 def ReadPFData():
@@ -75,7 +76,13 @@ def GenISP(Plevels, mu, sigma):
     base_mean = np.mean(Ps)
     for p in Plevels:
         gen_pols = stats.norm.rvs(loc=p, scale=sigma, size=N_field_stars)
-        fields_params.append([np.mean(gen_pols),np.std(gen_pols)])
+        positive_gen_pols = []
+        for gp in gen_pols:
+            if gp < 0:
+                continue
+            else:
+                positive_gen_pols.append(gp)
+        fields_params.append([np.mean(positive_gen_pols),np.std(positive_gen_pols)])
     return fields_params
 
 def ReadBlazarCat():
@@ -113,15 +120,22 @@ def GetRandBlazars(N,Pblaz):
         Ps.append(P)
     return Ps
 
-def Plot(Plevels,detect_fract):
+def Plot(Plevels,detect_fract_5s,detect_fract_3s):
     fig, ax = plt.subplots()
-    fig.set_size_inches(5,3.333)
-    font = {'size'   : 22, 'family' : 'sans'}
+    fig.set_size_inches(4.5,3)
+    font = {'size'   : 24, 'family' : 'sans'}
     mpl.rc('font', **font)
     plt.rc('text', usetex=False)
+    
+    plt.plot(Plevels,detect_fract_5s,marker='o',color="#5d76cb",linestyle = 'None',label='$5\sigma$')
+    plt.plot(Plevels,detect_fract_3s,marker='o',color="#cd5b45",linestyle = 'None',label='$3\sigma$')
+    
     ax.set_xlabel('<P> (%)')
     ax.set_ylabel('Detectability fraction')
-    plt.plot(Plevels,detect_fract,marker='o',linestyle = 'None')
+    ax.set_xticks([0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0])
+    ax.set_yticks([0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
+    ax.set_xlim(0,8)
+    plt.legend(prop={'size': 14})
     plt.savefig('Detect_Av_Pol.eps',bbox_inches='tight')
     plt.close()
 
@@ -131,15 +145,18 @@ if __name__ == "__main__":
     Plevels = np.arange(0.1,8,0.2)
     fields_params = GenISP(Plevels, mu, sigma)
     Pblaz = ReadBlazarCat()
-    Ps = GetRandBlazars(len(Plevels)*500,Pblaz)
+    Pfakeblaz = GetRandBlazars(len(Plevels)*Nsim,Pblaz)
     
-    detect_fract = np.zeros(len(Plevels))
-    for i in range(1,501):
+    detect_fract_5s = np.zeros(len(Plevels))
+    detect_fract_3s = np.zeros(len(Plevels))
+    for i in range(1,Nsim+1):
         for k in range(len(Plevels)):
             mean, sigma = fields_params[k]
-            if 100 * Ps[i*k] > mean + 5 * sigma:
-                detect_fract[k] += 1
-    Plot(Plevels,map(lambda x: x/500.,detect_fract))
+            if 100 * Pfakeblaz[i*k] > (mean + 5 * sigma):
+                detect_fract_5s[k] += 1
+            if 100 * Pfakeblaz[i*k] > (mean + 3 * sigma):
+                detect_fract_3s[k] += 1
+    Plot(Plevels,map(lambda x: x/float(Nsim),detect_fract_5s),map(lambda x: x/float(Nsim),detect_fract_3s))
         
 
 
