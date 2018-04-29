@@ -224,7 +224,7 @@ def GetRandBlazars(N,Pblaz):
         p0,m0 = random.choice(Pblaz)
         alpha = ((1.0-p0)/(p0*m0**2) - 1) * p0
         beta  = ((1.0-p0)/(p0*m0**2) - 1) * (1 - p0)
-        P = np.random.beta(alpha, beta, size=1)[0]
+        P = 100*np.random.beta(alpha, beta, size=1)[0]
         Ps.append(P)
     return Ps
 
@@ -236,7 +236,7 @@ def simulate(UFOs,Pblaz):
         detect = 0
         Ps = GetRandBlazars(N,Pblaz)
         for m in range(N):
-            if FieldPols[m][i] < Ps[m]:
+            if FieldPols[m][i] < Ps[m]: #  WARNING: there are negative values here
                 detect += 1
         det_fr.append(float(detect)/N)
     print np.mean(det_fr)
