@@ -1,0 +1,11 @@
+set term png
+set out filename
+
+set xlabel 'Q/I'
+set ylabel 'U/I'
+
+set style line 1 lc rgb "#2C397D" lt 5 lw 2
+set arrow from 0, graph 0 to 0, graph 1 nohead
+
+f(x) = 0
+plot ifilename u 5:7:6:8:15 w xyerr lc variable t '', f(x) t '' ls 1
