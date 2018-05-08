@@ -148,7 +148,7 @@ def plot(st_binned, bins):
     plt.scatter(xmean, y,c='r',s=1)
     plt.scatter(xmean, y_p_std,c='b',s=1)
     plt.scatter(xmean, y_n_std,c='b',s=1)
-    plt.xlim([0,1.76])
+    plt.xlim([0,1.78])
     plt.ylim([0,5])
     plt.savefig('P_EBV.eps',bbox_inches='tight')
     plt.clf()
@@ -204,7 +204,7 @@ def assignPolDistPar(UFOs, st_binned, bins):
     for ufo in UFOs:
         for i in range(len(bins)-1):
             if bins[i] < ufo.ebv <= bins[i+1]:
-                if bins[i+1] < 1.91 and st_binned[i].mean_P > 0 and st_binned[i].std_P > 0:
+                if bins[i+1] < 1.76 and st_binned[i].mean_P > 0 and st_binned[i].std_P > 0:
                     ufo.p_mean = st_binned[i].mean_P
                     ufo.p_std  = st_binned[i].std_P
                 else:
@@ -234,11 +234,15 @@ def simulate(UFOs,Pblaz):
     det_fr = []
     N = len(UFOs)
     FieldPols = [np.random.normal(x.p_mean, x.p_std, size=Nsim) for x in UFOs]
+    MeansField = [x.p_mean for x in UFOs]
+    StdField   = [x.p_std for x in UFOs]
     for i in range(Nsim):
         detect = 0
         Ps = GetRandBlazars(N,Pblaz)
         for m in range(N):
-            if FieldPols[m][i] < Ps[m]: #  WARNING: there are negative values here
+            #if FieldPols[m][i] < Ps[m]: #  WARNING: there are negative values here
+            #    detect += 1
+            if Ps[m] > MeansField[m] + 3 * StdField[m]:
                 detect += 1
         det_fr.append(float(detect)/N)
     print np.mean(det_fr)
