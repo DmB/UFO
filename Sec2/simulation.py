@@ -11,9 +11,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import math, random
-import distr
 
-Nsim = 800
+Nsim = 1000
 N_field_stars = 40
 
 def ReadPFData():
@@ -25,10 +24,10 @@ def ReadPFData():
         sl = line.split()
         P = float(sl[4])
         Perr = float(sl[5])
-        if P/Perr > 0.1:
-            Ps.append(P)
+        #if P/Perr > 3:
+        Ps.append(P)
     fop.close()
-    print 'Using ', len(Ps), ' P/sP > 0.1 stars'
+    print 'Using ', len(Ps), ' PF stars' #, ' P/sP > 3 stars'
     return Ps
 
 def log_norm(x, a, x0, sigma):
