@@ -133,11 +133,11 @@ def binEBV(stars):
     return st_binned, bins
 
 def plot(st_binned, bins):
-    figure = plt.figure(figsize=(12, 4), dpi=150)
+    figure = plt.figure(figsize=(4, 3), dpi=150)
     figure.subplots_adjust(hspace=0.1)
     fig = plt.subplot(111)
-    plt.xlabel('E (B-V)')
-    plt.ylabel('P (%)',fontsize=16)
+    plt.xlabel('E (B-V)',fontsize=14)
+    plt.ylabel('P (%)',fontsize=14)
     
     
     xmean = [0.5*(x+y) for x,y in zip(bins,bins[1:])]
@@ -148,7 +148,9 @@ def plot(st_binned, bins):
     plt.scatter(xmean, y,c='r',s=1)
     plt.scatter(xmean, y_p_std,c='b',s=1)
     plt.scatter(xmean, y_n_std,c='b',s=1)
-    plt.savefig('EBV_P.png',bbox_inches='tight')
+    plt.xlim([0,1.76])
+    plt.ylim([0,5])
+    plt.savefig('P_EBV.eps',bbox_inches='tight')
     plt.clf()
     plt.cla()
     plt.close()
