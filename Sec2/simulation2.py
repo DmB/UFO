@@ -15,6 +15,7 @@ variant 2
 
 import random
 import numpy as np
+import os
 
 Nsim  = 10000 # number of trials in MC
 N_UFO = 1010 # number of UFOs in 3FGL
@@ -67,6 +68,8 @@ def GetRandBlazars(N,Pblaz):
     return Ps
 
 if __name__ == "__main__":
+    if not os.path.exists('unidentALLextinct.dat'):
+        os.system('ln -s ../PASIPHAE_estimate/unidentALLextinct.dat .')
     Pmax = ReadExt()
     Pblaz = ReadBlazarCat()
     all_detections = []
