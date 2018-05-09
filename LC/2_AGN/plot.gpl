@@ -1,0 +1,78 @@
+
+set output "AGN_lc.eps" 
+set term postscript eps enh color size 9.25,3.6 font "Helvetica,18"
+set multiplot 
+unset key 
+set bar 0 
+#set border 10
+set lmargin 10
+
+
+
+
+unset title
+
+set xrange [54700:57007]
+
+
+set xlabel "MJD"
+set format x "%.0f"
+set origin 0.0,0.0 
+set size 1,0.545
+set yrange [0:0.04]
+set style line 1 lw 2 lc 7 pt 1 ps 0.8
+set style arrow 2 head nofilled size screen 0.018,7 ls 2 lc rgb("#ff0000")
+
+set ylabel "Ph. flux [ph cm-2 s-1]"
+
+
+plot "RBPLJ0221+2518_gamma_fl.dat" u 2:($3*1e6):($4*1e6) w yerr pt 7 lt 1 lc rgb("#000000"),"RBPLJ0221+2518_gamma_up.dat" u 2:($7*1e6):(0):(-0.002) w vectors arrowstyle 2
+
+set format x ""
+unset xlabel
+set origin 0,0.5
+set size 1,0.52
+set ylabel "PTF r-mag"
+set yrange [20.7:18.3]
+plot "02:21:33.3_+25:12:48.dat" u 1:2:3 w yerr t '' pt 7 lc rgb("#000000")
+
+########################################################
+unset multiplot
+reset
+set output "AGN_lc_zoom.eps" 
+set term postscript eps enh size 9.25,4
+set multiplot 
+unset key 
+set bar 0 
+#set border 10
+set lmargin 10
+
+
+
+
+unset title
+
+set xrange [55400:55600]
+set title 'RBPLJ1505+0326'
+
+set xlabel "MJD"
+set format x "%.0f"
+unset title
+set origin 0.0,0.0 
+set size 1,0.52
+set yrange [0:0.04]
+set style line 1 lw 2 lc 7 pt 1 ps 0.8
+set style arrow 2 head nofilled size screen 0.018,7 ls 2 lc rgb("#ff0000")
+
+set ylabel "Ph. flux [ph cm-2 s-1]"
+
+
+plot "RBPLJ0221+2518_gamma_fl.dat" u 2:($3*1e6):($4*1e6) w yerr pt 7 lt 1 lc rgb("#000000"),"RBPLJ0221+2518_gamma_up.dat" u 2:($7*1e6):(0):(-0.002) w vectors arrowstyle 2
+
+set format x ""
+unset xlabel
+set origin 0,0.5
+set size 1,0.52
+set ylabel "PTF r-mag"
+set yrange [20:19]
+plot "02:21:33.3_+25:12:48.dat" u 1:2:3 w yerr t '' pt 7 lc rgb("#000000")
