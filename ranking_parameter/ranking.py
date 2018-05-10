@@ -33,8 +33,8 @@ for line in fop.readlines():
     flux.append(str(sl[18]))
     var.append(str(sl[55]))
 for i in range(len(ra)):
-    bl.append(float(10.0**22.0*float(var[i])*float(flux[i])/float(math.pi*float(semi_major[i])*float(semi_minor[i]))))    
-    bl2.append(float(10.0**22.0*float(var[i])*float(flux[i])/float(math.pi*float(semi_major[i])*float(semi_minor[i]))))
+    bl.append(10.0**22.0*float(var[i])*float(flux[i])  /  (math.pi*float(semi_major[i])*float(semi_minor[i])))
+    bl2.append(10.0**22.0*float(var[i])*float(flux[i]) /  (math.pi*float(semi_major[i])*float(semi_minor[i])))
 
 bl2.sort(reverse=True)
 for i in range(len(bl2)):
@@ -72,7 +72,13 @@ for i in range(len(ra)):
     fop2.write('\n')
     order+=1
     if name_new[i] == '3FGL J0221.2+2518':
-        print 'parameter=', str(bl2[i]), ' order=',order
+        print 'F4 J0221.2+2518 parameter=', str(bl2[i]), ' order=',order
+    elif name_new[i] == '3FGL J1848.6+3232':
+        print 'F1 J1848.6+3232 parameter=', str(bl2[i]), ' order=',order
+    elif name_new[i] == '3FGL J0336.1+7500':
+        print 'F2 J0336.1+7500 parameter=', str(bl2[i]), ' order=',order
+    elif name_new[i] == '3FGL J0419.1+6636':
+        print 'F3 J0419.1+6636 parameter=', str(bl2[i]), ' order=',order
 
 
 
