@@ -1,86 +1,76 @@
+#!/usr/bin/python
+
 import math
+import pyfits
 
-name=[]
-ra=[]
-dec=[]
-semi_major=[]
-semi_minor=[]
-flux=[]
-var=[]
-bl=[]
-bl2=[]
-name_new=[]
-ra_new=[]
-dec_new=[]
-semi_major_new=[]
-semi_minor_new=[]
-flux_new=[]
-var_new=[]
-bl_new=[]
+class Obj():
+    def __init__(self):
+        self.name       = None
+        self.ra         = None
+        self.dec        = None
+        self.flux       = None
+        self.var        = None
+        self.semi_major = None
+        self.semi_minor = None
 
-fop = open('U3FGL.csv')
-fop2 = open('ranking.csv','w+')
+    def calcRank(self):
+        self.rank = self.var * 1e6 * self.flux / (math.pi * self.semi_major * self.semi_minor )
 
-for line in fop.readlines():
-    if line.startswith('#'):
-        continue
-    sl=line.split(',')
-    name.append(str(sl[0]))
-    ra.append(str(sl[1]))
-    dec.append(str(sl[2]))
-    semi_major.append(str(sl[8]))
-    semi_minor.append(str(sl[9]))
-    flux.append(str(sl[18]))
-    var.append(str(sl[55]))
-for i in range(len(ra)):
-    bl.append(10.0**22.0*float(var[i])*float(flux[i])  /  (math.pi*float(semi_major[i])*float(semi_minor[i])))
-    bl2.append(10.0**22.0*float(var[i])*float(flux[i]) /  (math.pi*float(semi_major[i])*float(semi_minor[i])))
+    def __lt__(self, other):
+        return self.rank < other.rank
 
-bl2.sort(reverse=True)
-for i in range(len(bl2)):
-    for j in range(len(bl2)):
-        if bl2[i]==bl[j]:
-            name_new.append(name[j])
-            ra_new.append(ra[j])
-            dec_new.append(dec[j])
-            semi_major_new.append(semi_major[j])
-            semi_minor_new.append(semi_minor[j])
-            flux_new.append(flux[j])
-            var_new.append(var[j])
-            break
 
+ufos = []
+
+hdulist = pyfits.open('../PASIPHAE_estimate/gll_psc_v16.fit')
+header = hdulist[1].header
+tbdata = hdulist[1].data
+
+for td in tbdata:
+    CLASS1 = td[73]
+    if CLASS1 == '':
+        o = Obj()
+        o.name = td[0]
+        o.ra   = td[1]
+        o.dec  = td[2]
+        o.semi_major = td[8]
+        o.semi_minor = td[9]
+        o.flux = td[35] + td[39] + td[43] + td[47] + td[51]
+        o.var  = td[55]
+        o.calcRank()
+        ufos.append(o)
+
+ufos.sort(reverse=True)
+
+fop2 = open('ranking.csv','w')
 fop2.write(str('#Name ranking RA DEC Semi_major Semi_minor Flux Var'))
 fop2.write('\n')
 order=0
-for i in range(len(ra)):
-    #bl.append(float(10.0**22.0*float(var[i])*float(flux[i])/float(math.pi*float(semi_major[i])*float(semi_minor[i]))))
-    fop2.write(str(name_new[i]))
+for ufo in ufos:
+    fop2.write(str(ufo.name))
     fop2.write(',')
-    fop2.write(str(bl2[i]))
+    fop2.write(str(ufo.rank))
     fop2.write(',')
-    fop2.write(str(ra_new[i]))
+    fop2.write(str(ufo.ra))
     fop2.write(',')
-    fop2.write(str(dec_new[i]))
+    fop2.write(str(ufo.dec))
     fop2.write(',')
-    fop2.write(str(semi_major_new[i]))
+    fop2.write(str(ufo.semi_major))
     fop2.write(',')
-    fop2.write(str(semi_minor_new[i]))
+    fop2.write(str(ufo.semi_minor))
     fop2.write(',')
-    fop2.write(str(flux_new[i]))
+    fop2.write(str(ufo.flux))
     fop2.write(',')
-    fop2.write(str(var_new[i]))
+    fop2.write(str(ufo.var))
     fop2.write('\n')
     order+=1
-    if name_new[i] == '3FGL J0221.2+2518':
-        print 'F4 J0221.2+2518 parameter=', str(bl2[i]), ' order=',order
-    elif name_new[i] == '3FGL J1848.6+3232':
-        print 'F1 J1848.6+3232 parameter=', str(bl2[i]), ' order=',order
-    elif name_new[i] == '3FGL J0336.1+7500':
-        print 'F2 J0336.1+7500 parameter=', str(bl2[i]), ' order=',order
-    elif name_new[i] == '3FGL J0419.1+6636':
-        print 'F3 J0419.1+6636 parameter=', str(bl2[i]), ' order=',order
+    if ufo.name == '3FGL J0221.2+2518':
+        print 'F4 J0221.2+2518 parameter=', str(ufo.rank), ' order=',order
+    elif ufo.name == '3FGL J1848.6+3232':
+        print 'F1 J1848.6+3232 parameter=', str(ufo.rank), ' order=',order
+    elif ufo.name == '3FGL J0336.1+7500':
+        print 'F2 J0336.1+7500 parameter=', str(ufo.rank), ' order=',order
+    elif ufo.name == '3FGL J0419.1+6636':
+        print 'F3 J0419.1+6636 parameter=', str(ufo.rank), ' order=',order
 
-
-
-fop.close()
 fop2.close()
