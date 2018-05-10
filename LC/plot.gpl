@@ -1,0 +1,51 @@
+
+set output "lc.eps" 
+set term postscript eps enh color size 9.25,4.3 font "Helvetica,18"
+set multiplot 
+unset key 
+set bar 0 
+#set border 10
+set lmargin 10
+
+
+
+
+unset title
+
+set xrange [54700:57007]
+
+
+set xlabel "MJD"
+set format x "%.0f"
+set origin 0.0,0.0 
+set size 1,0.40
+set yrange [0:0.04]
+set style line 1 lw 2 lc 7 pt 1 ps 0.8
+set style arrow 2 head nofilled size screen 0.018,7 ls 2 lc rgb("#ff0000")
+
+set ylabel "Ph. flux [ph cm-2 s-1]"
+
+set label 1 "UFOC" at 55800, 17.5  font "Helvetica,32"
+set label 2 "NVSS J022126+251436" at 55800, 19.5  font "Helvetica,32"
+set label 3 "3FGL J0221.2+2518" at 55800, 0.025  font "Helvetica,32"
+
+plot "./UFO/RBPLJ0221+2518_gamma_fl.dat" u 2:($3*1e6):($4*1e6) w yerr pt 7 lt 1 lc rgb("#000000"),"./UFO/RBPLJ0221+2518_gamma_up.dat" u 2:($7*1e6):(0):(-0.002) w vectors arrowstyle 2
+
+set format x ""
+unset xlabel
+set origin 0,0.35
+set size 1,0.35
+set ylabel "PTF r-mag"
+set yrange [20.7:18.6]
+plot "./2_AGN/02:21:33.3_+25:12:48.dat" u 1:2:3 w yerr t 'NVSS J022126+251436' pt 7 lc rgb("#ee204d")
+
+unset label 1
+
+set format x ""
+unset xlabel
+set origin 0,0.65
+set size 1,0.35
+set ylabel "PTF r-mag"
+set yrange [17.7:17.3]
+plot "./UFO/02:21:33.3_+25:12:48.dat" u 1:2:3 w yerr t 'UFOC' pt 7 lc rgb("#6600ff")
+
