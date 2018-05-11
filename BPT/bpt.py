@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # Instructions run the Python program: python -W ignore BPT.py
 # Program to reproduce the BPT diagram using PyFits and FITS format. 
 
@@ -36,7 +37,7 @@ SII2    = FITS[1].data['SII_6731_FLUX']        # Reading the column with SII lin
 
 #plt.subplot(1,2,1)
 #f      = plt.figure(1)
-f      = plt.figure(1,figsize=(10,5),dpi=600)
+f      = plt.figure(1,figsize=(9.6,3.7),dpi=300)
 xx     = np.log10(  NII / Halpha )      # log10(NII/Halpha)
 yy     = np.log10( OIII /  Hbeta )      # log10(OIII/Hbeta)
 
@@ -47,11 +48,13 @@ Ymin, Ymax         = -1.5, 1.5   # Define the maximum and minimum limit in Y-axi
 Nlevels            = 6           # Define the number of levels of isocontour
 
 
-hist,xedges,yedges = np.histogram2d(xx,yy,bins=(bins_X, bins_Y),range=[[Xmin,Xmax],[Ymin,Ymax]])
-masked             = np.ma.masked_where(hist==0, hist)
-plotting           = ax.imshow(masked.T,extent=[Xmin, Xmax, Ymin, Ymax],interpolation='nearest',origin='lower',cmap=plt.cm.gray_r)
+#hist,xedges,yedges = np.histogram2d(xx,yy,bins=(bins_X, bins_Y),range=[[Xmin,Xmax],[Ymin,Ymax]])
+#masked             = np.ma.masked_where(hist==0, hist)
+#plotting           = ax.imshow(masked.T,extent=[Xmin, Xmax, Ymin, Ymax],interpolation='nearest',origin='lower',cmap=plt.cm.gray_r)
 #levels             = np.linspace(0., np.log10(masked.max()), Nlevels)[1:]
 #CS                 = ax.contour(np.log10(masked.T), levels, colors='k',linewidths=1,extent=[Xmin,Xmax,Ymin,Ymax])
+
+plt.plot(xx,yy,markerfacecolor='k',markeredgecolor='k',marker=',',linestyle="None")
 
 
 # Kewley+01 ------------------------------------------
@@ -83,7 +86,7 @@ ax.set_ylabel(r'log([OIII]/H$\beta$)',fontsize=Nsize)
 ax.tick_params(labelsize = Nsize)
 ax.set_xlim(Xmin, Xmax)
 ax.set_ylim(Ymin, Ymax)
-ax.fill([-0.42,-0.42,-0.38,-0.38],[Ymin,Ymax,Ymax,Ymin],alpha=1000.,color="yellow")
+ax.fill([-0.42,-0.42,-0.38,-0.38],[Ymin,Ymax,Ymax,Ymin],alpha=0.5,color="yellow",zorder=5)
 #ax.get_xminorticklabels([-1.4,-1.3,-1.2,-1.1,-0.9,-0.8,-0.7,-0.6,-0.4,-0.3,-0.2,-0.1,0.1,0.2,0.3,0.4,0.6,0.7,0.8,0.9,1.1])
 #ax.get_yminorticklabels([-1.4,-1.3,-1.2,-1.1,-0.9,-0.8,-0.7,-0.6,-0.4,-0.3,-0.2,-0.1,0.1,0.2,0.3,0.4,0.6,0.7,0.8,0.9,1.1,1.2,1.3,1.4])
 
@@ -104,11 +107,12 @@ Ymin, Ymax         = -1.5, 1.5   # Define the maximum and minimum limit in Y-axi
 
 
 
-hist,xedges,yedges = np.histogram2d(xx,yy,bins=(bins_X, bins_Y),range=[[Xmin,Xmax],[Ymin,Ymax]])
-masked             = np.ma.masked_where(hist==0, hist)
-plotting           = ax.imshow(masked.T,extent=[Xmin, Xmax, Ymin, Ymax],interpolation='nearest',origin='lower',cmap=plt.cm.gray_r)
+#hist,xedges,yedges = np.histogram2d(xx,yy,bins=(bins_X, bins_Y),range=[[Xmin,Xmax],[Ymin,Ymax]])
+#masked             = np.ma.masked_where(hist==0, hist)
+#plotting           = ax.imshow(masked.T,extent=[Xmin, Xmax, Ymin, Ymax],interpolation='nearest',origin='lower',cmap=plt.cm.gray_r)
 
 
+plt.plot(xx,yy,markerfacecolor='k',markeredgecolor='k',marker=',',linestyle="None")
 
 
 X = np.linspace(-1.5,0.3)
@@ -121,7 +125,7 @@ ax.plot(X,   Y, '-' , color='red', lw=0.5, label='Kewley+01'    ) # Kewley+01
 
 plt.text(-1.05, -1.05,'SF',color='brown',size=18)
 plt.text(0.1, -0.2,'LINER',color='brown',size=18)
-plt.text(-0.4, 1.3,'SEYFERT',color='brown',size=18)
+plt.text(-0.4, 1.26,'SEYFERT',color='brown',size=18)
 
 
 # Axi name here ...
@@ -131,7 +135,7 @@ ax.set_ylabel(r'log([OIII]/H$\beta$)',fontsize=Nsize)
 ax.tick_params(labelsize = Nsize)
 ax.set_ylim(Ymin, Ymax)
 ax.set_xlim(Xmin, Xmax)
-ax.fill([-0.68,-0.68,-0.64,-0.64],[Ymin,Ymax,Ymax,Ymin],alpha=1000.0,color="yellow")
+ax.fill([-0.68,-0.68,-0.64,-0.64],[Ymin,Ymax,Ymax,Ymin],alpha=0.5,color="yellow",zorder=5)
 #ax.get_xminorticklabels([-1.4,-1.3,-1.2,-1.1,-0.9,-0.8,-0.7,-0.6,-0.4,-0.3,-0.2,-0.1,0.1,0.2,0.3,0.4,0.6,0.7,0.8,0.9,1.1])
 #ax.get_yminorticklabels([-1.4,-1.3,-1.2,-1.1,-0.9,-0.8,-0.7,-0.6,-0.4,-0.3,-0.2,-0.1,0.1,0.2,0.3,0.4,0.6,0.7,0.8,0.9,1.1,1.2,1.3,1.4])
 
@@ -139,5 +143,5 @@ ax.fill([-0.68,-0.68,-0.64,-0.64],[Ymin,Ymax,Ymax,Ymin],alpha=1000.0,color="yell
 plt.tight_layout()
 
 
-plt.savefig('bpt_all.eps')
-plt.show()
+plt.savefig('BPT.png',bbox_inches='tight')
+#plt.show()
