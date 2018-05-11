@@ -70,9 +70,9 @@ Xk = np.linspace(-1.5,0.)
 Yk = 0.61/(Xk -0.05) + 1.3
 
 # Regions --------------------------------------------
-ax.plot(X,   Y, '-' , color='red', lw=0.5, label='Kewley+01'    ) # Kewley+01
+ax.plot(X,   Y, '-' , color='red', lw=1, label='Kewley+01'    ) # Kewley+01
 #ax.plot(X3, Y3, '-', color='blue', lw=0.5, label='Schawinski+07') # Schawinski+07
-ax.plot(Xk, Yk, '--', color='blue', lw=0.5, label='Kauffmann+03' ) # Kauffmann+03
+ax.plot(Xk, Yk, '--', color='blue', lw=1, label='Kauffmann+03' ) # Kauffmann+03
 
 
 plt.text(-1.05, -1.05,'SF',color='brown',size=18)
@@ -87,6 +87,7 @@ ax.tick_params(labelsize = Nsize)
 ax.set_xlim(Xmin, Xmax)
 ax.set_ylim(Ymin, Ymax)
 ax.fill([-0.42,-0.42,-0.38,-0.38],[Ymin,Ymax,Ymax,Ymin],alpha=0.5,color="yellow",zorder=5)
+ax.set_xticks([-1.5,-1,-0.5,0,0.5,1,1.5])
 #ax.get_xminorticklabels([-1.4,-1.3,-1.2,-1.1,-0.9,-0.8,-0.7,-0.6,-0.4,-0.3,-0.2,-0.1,0.1,0.2,0.3,0.4,0.6,0.7,0.8,0.9,1.1])
 #ax.get_yminorticklabels([-1.4,-1.3,-1.2,-1.1,-0.9,-0.8,-0.7,-0.6,-0.4,-0.3,-0.2,-0.1,0.1,0.2,0.3,0.4,0.6,0.7,0.8,0.9,1.1,1.2,1.3,1.4])
 
@@ -120,12 +121,12 @@ Y = (0.72/( X  - 0.32  )) + 1.30
 
 
 # Regions --------------------------------------------
-ax.plot(X,   Y, '-' , color='red', lw=0.5, label='Kewley+01'    ) # Kewley+01
+ax.plot(X,   Y, '-' , color='red', lw=1, label='Kewley+01'    ) # Kewley+01
 #ax.plot(X3, Y3, '-', color='blue', lw=0.5, label='Schawinski+07') # Schawinski+07
 
 plt.text(-1.05, -1.05,'SF',color='brown',size=18)
 plt.text(0.1, -0.2,'LINER',color='brown',size=18)
-plt.text(-0.4, 1.26,'SEYFERT',color='brown',size=18)
+plt.text(-0.8, 1.1,'SEYFERT',color='brown',size=18)
 
 
 # Axi name here ...
@@ -136,6 +137,7 @@ ax.tick_params(labelsize = Nsize)
 ax.set_ylim(Ymin, Ymax)
 ax.set_xlim(Xmin, Xmax)
 ax.fill([-0.68,-0.68,-0.64,-0.64],[Ymin,Ymax,Ymax,Ymin],alpha=0.5,color="yellow",zorder=5)
+ax.set_xticks([-1.5,-1,-0.5,0,0.5,1,1.5])
 #ax.get_xminorticklabels([-1.4,-1.3,-1.2,-1.1,-0.9,-0.8,-0.7,-0.6,-0.4,-0.3,-0.2,-0.1,0.1,0.2,0.3,0.4,0.6,0.7,0.8,0.9,1.1])
 #ax.get_yminorticklabels([-1.4,-1.3,-1.2,-1.1,-0.9,-0.8,-0.7,-0.6,-0.4,-0.3,-0.2,-0.1,0.1,0.2,0.3,0.4,0.6,0.7,0.8,0.9,1.1,1.2,1.3,1.4])
 
