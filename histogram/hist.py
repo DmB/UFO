@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+import matplotlib as mpl
+mpl.use('QT4Agg')
 import numpy as np
 
 from scipy import stats
@@ -16,7 +18,8 @@ for line in fop.readlines():
     perr.append( float(sl[9]) * 100 )
 fop.close()
 
-figure = plt.figure(figsize=(6, 6.0), dpi=150)
+mpl.rc("text", usetex=False)
+figure = plt.figure(figsize=(6.5, 5.0), dpi=150)
 figure.subplots_adjust(hspace=0.1)
 fig = plt.subplot(111)
 
