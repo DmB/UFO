@@ -142,8 +142,8 @@ def plot(st_binned, bins):
     
     xmean = [0.5*(x+y) for x,y in zip(bins,bins[1:])]
     y = map(lambda x: x.mean_P, st_binned)
-    y_p_std = map(lambda x: x.mean_P + x.std_P, st_binned)
-    y_n_std = map(lambda x: x.mean_P - x.std_P, st_binned)
+    y_p_std = map(lambda x: x.mean_P + 3* x.std_P, st_binned)
+    y_n_std = map(lambda x: x.mean_P - 3* x.std_P, st_binned)
     
     #plt.scatter(xmean, y,c='r',s=1)
     #plt.scatter(xmean, y_p_std,c='b',s=1)
@@ -154,7 +154,8 @@ def plot(st_binned, bins):
     plt.fill_between(xmean, y_n_std,y_p_std,color='#b3b3b3',alpha=.5)
     plt.plot(xmean, y,c='k',linewidth=2)
     plt.xlim([0,1.78])
-    plt.ylim([0,5])
+    #plt.ylim([0,5])
+    plt.ylim([0,8.1])
     plt.savefig('P_EBV.eps',bbox_inches='tight')
     plt.clf()
     plt.cla()

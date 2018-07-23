@@ -43,11 +43,11 @@ for td in tbdata:
 #theta = np.arange(0,2*np.pi,0.1)
 #x = np.array([0,np.pi/3,np.pi/3,0,0])
 x = np.array([              0,          np.pi,     np.pi,                    0,                     -np.pi,             -np.pi,                 0])
-y = np.array([np.radians(40.),np.radians(40.),    np.radians(89.999),  np.pi/2-0.000001,    np.radians(89.999),  np.radians(40.), np.radians(40.)])
+y = np.array([np.radians(50.),np.radians(50.),    np.radians(89.999),  np.pi/2-0.000001,    np.radians(89.999),  np.radians(50.), np.radians(50.)])
 
 
 x2 = np.array([              0,          np.pi,     np.pi,                    0,                     -np.pi,             -np.pi,                 0])
-y2 = np.array([np.radians(-40.),np.radians(-40.),    np.radians(-89.999),  -np.pi/2+0.000001,    np.radians(-89.999),  np.radians(-40.), np.radians(-40.)])
+y2 = np.array([np.radians(-50.),np.radians(-50.),    np.radians(-89.999),  -np.pi/2+0.000001,    np.radians(-89.999),  np.radians(-50.), np.radians(-50.)])
 
 fig = plt.figure(figsize=(10, 5))
 ax = fig.add_subplot(111, projection="aitoff")#, axisbg ='LightCyan')
