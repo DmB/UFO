@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import math, random
 
-Nsim = 1000
+Nsim = 5000
 N_field_stars = 40
 
 def ReadPFData():
@@ -129,7 +129,7 @@ def Plot(Plevels,detect_fract_5s,detect_fract_3s):
     plt.plot(Plevels,detect_fract_5s,marker='o',color="#5d76cb",linestyle = 'None',label='$5\sigma$')
     plt.plot(Plevels,detect_fract_3s,marker='o',color="#cd5b45",linestyle = 'None',label='$3\sigma$')
     
-    ax.set_xlabel('<P> (%)')
+    ax.set_xlabel('Field stars <P> (%)')
     ax.set_ylabel('Detectability fraction')
     ax.set_xticks([0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0])
     ax.set_yticks([0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])

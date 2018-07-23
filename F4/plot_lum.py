@@ -76,7 +76,7 @@ def axis_callback(ax_lumin):
 
 def plot(UFO,Fermi):
     global ax_flux
-    figure = plt.figure(figsize=(3, 2.56), dpi=200)
+    figure = plt.figure(figsize=(4, 3), dpi=200)
     figure.subplots_adjust(hspace=0.1)
     fig = plt.subplot(111)
     plt.xlabel(r'$\mathrm{\nu}$ $\mathrm{(Hz)}$')

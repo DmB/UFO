@@ -1,3 +1,6 @@
+#!/usr/bin/python
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 #star   ra   dec  nobs wq qerr  wu  uerr p perr angle angleerr p/sp pdeb
@@ -28,7 +31,7 @@ p=[100*mm for mm in p]
 print np.median(p),np.mean(p),np.std(p)
 print np.median(test),np.mean(test),np.std(test)
 p3=[np.sqrt(qq**2+uu**2) for qq,uu in zip(sq,su)]
-plt.rcParams["figure.figsize"] = [10,10]
+plt.rcParams["figure.figsize"] = [7,7]
 plt.figure()
 #plt.subplot(121)
 
