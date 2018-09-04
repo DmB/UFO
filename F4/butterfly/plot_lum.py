@@ -127,17 +127,21 @@ def plot(UFO,Fermi):
         elif ufo.name.startswith("SLOAN"):
             color = '#ffa500'
         elif ufo.name.startswith("2MASS"):
-            color = '#ff2400'
+            color = '#EC0ED6'
         elif ufo.name.startswith("WISE"):
             color = '#8b4513'
             
         ax_lumin.errorbar(ufo.freq,ufo.Lumin,yerr=ufo.Luminerr,markersize=2,capthick=0,fmt='o',color=color)
     
     ax_lumin.errorbar(0,0,yerr=0,markersize=2,capthick=0,fmt='o',color='#8b4513', label="WISE")
-    ax_lumin.errorbar(0,0,yerr=0,markersize=2,capthick=0,fmt='o',color='#ff2400', label="2MASS")
+    ax_lumin.errorbar(0,0,yerr=0,markersize=2,capthick=0,fmt='o',color='#EC0ED6', label="2MASS")
     ax_lumin.errorbar(0,0,yerr=0,markersize=2,capthick=0,fmt='o',color='#ffa500', label="SDSS")
     ax_lumin.errorbar(0,0,yerr=0,markersize=2,capthick=0,fmt='o',color='#00cc00', label="Gaia")
     ax_lumin.errorbar(0,0,yerr=0,markersize=2,capthick=0,fmt='o',color='#8b00ff', label="GALEX")
+    ax_lumin.errorbar(0,0,yerr=0,markersize=2,capthick=0,fmt='o',color='r', label="Fermi")
+    
+    ax_lumin.text(1e13,5e43,'UFSC')
+    ax_lumin.text(2e19,5e43,'3FGLJ0221.2+2518')
 
     #for ferm in Fermi:
     freqs      = map(lambda x: x.freq, Fermi)
