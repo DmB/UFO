@@ -56,7 +56,7 @@ def findSigmaPDist(Glongs,Glats,Ps):
     
     std_Ps = []  # list of standard deviations of polarization within the circle at different positions of the PF
     i = 0
-    while i < 3000:
+    while i < 5000:
         G_Lat = random.uniform(G_Lat_Low, G_Lat_Upp)
         G_Lon = random.uniform(G_Lon_Low, G_Lon_Upp)
         curPs = []
@@ -96,9 +96,9 @@ def findSigmaPDist(Glongs,Glats,Ps):
     plt.cla()
     plt.clf()
 
-    return popt[2]
+    return popt[1],popt[2]
 
-def GenISP(Plevels, sigma):
+def GenISP(Plevels, mu, sigma):
     """
     Generates N_field_stars for every level of average polarization and finds the mean and std for them
     This function almost makes no sence, just introduces more noise (but we are repeating what has been done before).
@@ -106,14 +106,8 @@ def GenISP(Plevels, sigma):
     fields_params = []
     base_mean = np.mean(Ps)
     for p in Plevels:
-        gen_pols = stats.norm.rvs(loc=p, scale=sigma, size=N_field_stars)
-        positive_gen_pols = []
-        for gp in gen_pols:
-            if gp < 0:
-                continue
-            else:
-                positive_gen_pols.append(gp)
-        fields_params.append([np.mean(positive_gen_pols),np.std(positive_gen_pols)])
+        cur_sigma = stats.norm.rvs(loc=mu, scale=sigma, size=1)
+        fields_params.append([p,cur_sigma])
     return fields_params
 
 def ReadBlazarCat():
@@ -172,9 +166,9 @@ def Plot(Plevels,detect_fract_5s,detect_fract_3s):
 
 if __name__ == "__main__":
     Glongs,Glats,Ps = ReadPFData()
-    sigma = findSigmaPDist(Glongs,Glats,Ps)
+    mu, sigma = findSigmaPDist(Glongs,Glats,Ps)
     Plevels = np.arange(0.1,8,0.2)
-    fields_params = GenISP(Plevels, sigma)
+    fields_params = GenISP(Plevels, mu, sigma)
     Pblaz = ReadBlazarCat()
     Pfakeblaz = GetRandBlazars(len(Plevels)*Nsim,Pblaz)
     
