@@ -1,0 +1,6 @@
+# name             lambda[A]    F[erg/cm2/s/A]     Ferr         fit
+Fermi10_100GeV   2.254259e-7     2.007e-06       0.000e+00       n
+Fermi3_10GeV     0.000001907     4.213e-07       0.000e+00       n
+Fermi1_3GeV      0.000006199     9.726e-08       0.000e+00       n
+Fermi0.3_1GeV    0.000016531     3.272e-09       0.000e+00       n
+Fermi0.1_0.3GeV  0.000061992     1.581e-08       0.000e+00       n
