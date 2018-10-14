@@ -171,8 +171,8 @@ def plot(UFO,Fermi):
             ax_flux.errorbar(x,y,yerr=[[0.0],[yerr_plus]],markersize=4,fmt='rv',capthick=0,markeredgecolor='red')
             ax_flux.errorbar(x,1.87E-13,color='red',markersize=5,capthick=0,fmt='.')
         else:
-            ax_flux.errorbar(x,y,yerr=[[yerr_minus],[yerr_plus]],color='blue',markersize=5,capthick=0,fmt='.')
-            ax_flux.plot(x,y+yerr_plus,markersize=4,marker='v',color='blue',markeredgecolor='blue')
+            ax_flux.errorbar(x,y,yerr=[[yerr_minus-0.5*yerr_minus],[yerr_plus]],color='blue', capthick=1, capsize=2)#,markersize=5,capthick=0,fmt=''
+            ax_flux.plot(x,y-(yerr_minus-0.46*yerr_minus),markersize=4,marker='v',color='blue',markeredgecolor='blue')
     fop.close
     
     
@@ -184,7 +184,7 @@ def plot(UFO,Fermi):
     
     ax_flux.set_ylabel(r'$\mathrm{\nu F_{\nu} (erg/s/cm^2)}$',fontsize=11)
     
-    plt.savefig('SED.png',bbox_inches='tight',dpi=400)
+    plt.savefig('SED.eps',bbox_inches='tight',dpi=400)
 
 if __name__ == "__main__":
     UFO = ReadData()
