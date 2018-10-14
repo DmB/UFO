@@ -9,7 +9,7 @@ from uncertainties import ufloat
 import numpy as np
 
 cosmo = FlatLambdaCDM(H0=67.8, Om0=0.308)
-z = 0.06169
+z = 0.0609
 cm_in_Mpc = 3.08568e24
 Dl = cosmo.luminosity_distance(z).value # in Mpc
 h = 4.135667662e-15 # plank const in eV s
@@ -172,6 +172,7 @@ def plot(UFO,Fermi):
             ax_flux.errorbar(x,1.87E-13,color='red',markersize=5,capthick=0,fmt='.')
         else:
             ax_flux.errorbar(x,y,yerr=[[yerr_minus],[yerr_plus]],color='blue',markersize=5,capthick=0,fmt='.')
+            ax_flux.plot(x,y+yerr_plus,markersize=4,marker='v',color='blue',markeredgecolor='blue')
     fop.close
     
     
