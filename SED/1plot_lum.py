@@ -53,7 +53,7 @@ class Obs():
 
 def ReadData():
     obs = []
-    fn = '../UFO_1152-0027816.dat'
+    fn = 'UFO_1152-0027816.dat'
     fop = open(fn)
     for line in fop.readlines():
         if line.startswith("#"):
@@ -178,12 +178,12 @@ def plot(UFO,Fermi):
     plt.xlim([1e10,1e27])
     ax_lumin.set_ylim([1e41,5e43])
     plt.xticks([1e10,1e13,1e16,1e19,1e22,1e25])
-    ax_lumin.legend(loc=9,bbox_to_anchor=(0.5,-0.2),ncol=7,fontsize=6)
+    ax_lumin.legend(loc='upper center',bbox_to_anchor=(0.5,1.22),ncol=4,fontsize=9)#bbox_to_anchor=(0.5,-0.2),
 
     
     ax_flux.set_ylabel(r'$\mathrm{\nu F_{\nu} (erg/s/cm^2)}$',fontsize=11)
     
-    plt.savefig('SED.png',bbox_inches='tight',dpi=400)
+    plt.savefig('SED.eps',bbox_inches='tight',dpi=400)
 
 if __name__ == "__main__":
     UFO = ReadData()
