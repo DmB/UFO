@@ -1,9 +1,0 @@
-Full energy range model for RBPLJ0221+2518:
-RBPLJ0221+2518
-   Spectrum: PowerLaw
-129    Prefactor:  9.544e+00  3.287e+00  1.000e-04  1.000e+04 ( 1.000e-14)
-130        Index:  1.922e+00  2.300e-01  0.000e+00  1.000e+01 (-1.000e+00)
-131        Scale:  3.399e+03  0.000e+00  3.000e+01  5.000e+05 ( 1.000e+00) fixed
-
-Flux 0.1-100.0 GeV 9.1e-09 +/- 5.0e-09 cm^-2 s^-1
-Test Statistic 26.78
