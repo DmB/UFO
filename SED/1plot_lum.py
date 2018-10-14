@@ -143,8 +143,8 @@ def plot(UFO,Fermi):
     ax_lumin.errorbar(0,0,yerr=0,markersize=5,capthick=0,fmt='.',color='r', label="Fermi")
     
     
-    ax_lumin.text(1e13,3e43,'UGSC')
-    ax_lumin.text(1e18,3e43,'3FGLJ0221.2+2518')
+    #ax_lumin.text(1e13,3e43,'UGSC')
+    #ax_lumin.text(1e18,3e43,'3FGLJ0221.2+2518')
 
     #for ferm in Fermi:
     #for ferm in Fermi:
@@ -184,7 +184,7 @@ def plot(UFO,Fermi):
     
     ax_flux.set_ylabel(r'$\mathrm{\nu F_{\nu} (erg/s/cm^2)}$',fontsize=11)
     
-    plt.savefig('SED.eps',bbox_inches='tight',dpi=400)
+    plt.savefig('SED.png',bbox_inches='tight',dpi=400)
 
 if __name__ == "__main__":
     UFO = ReadData()
